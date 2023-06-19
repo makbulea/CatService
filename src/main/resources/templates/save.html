@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org"
+      layout:decorate="~{layout/main}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div id="output"></div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header" style=" background: black; color: white;">
+                    <h2 class="text-center">Register Random Cat</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" role="form" th:action="@{/cat/save}" th:object="${catRecord}"
+                          class="form-horizontal">
+
+                        <div class="form-group mb-3">
+                            <label class="control-label"> Cat Recort Type</label>
+                            <select id="recordType" name="recordType" th:field="*{recordType}" class="form-control">
+                                <option th:each="recordType : ${T(com.api.cyangate.enums.RecordType).values()}"
+                                        th:value="${recordType}" th:text="${recordType.displayValue}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3" id="divName">
+                            <label class="control-label"> name</label>
+                            <input type="text" id="name" name="name" class="form-control" th:field="*{name}"
+                                   placeholder="Enter name" required/>
+
+                        </div>
+
+                        <div id="divTagValue" class="form-group mb-3">
+                            <label class="control-label">Tag Value</label>
+                            <input type="text" id="tagValue" name="tagValue" class="form-control" th:field="*{tagValue}"
+                                   placeholder="Enter Tag Value"/>
+                        </div>
+
+                        <div id="divTextValue" class="form-group mb-3">
+                            <label class="control-label"> Text Value</label>
+                            <input type="text" id="textValue" name="textValue" class="form-control"
+                                   th:field="*{textValue}"
+                                   placeholder="Enter Text Value"/>
+                        </div>
+
+                        <div id="divCustomValueWidth" class="form-group mb-3">
+                            <label class="control-label"> Custom Value Width</label>
+                            <input type="text" id="customValueWidth" name="customValueWidth" class="form-control"
+                                   th:field="*{customValueWidth}"
+                                   placeholder="Enter value"/>
+                        </div>
+
+                        <div id="divCustomValueHeight" class="form-group mb-3">
+                            <label class="control-label"> Custom Value Height</label>
+                            <input type="text" id="customValueHeight" name="customValueHeight" class="form-control"
+                                   th:field="*{customValueHeight}"
+                                   placeholder="Enter value"/>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="control-label"> path</label>
+                            <input type="text" id="path" name="path" th:field="*{path}"
+                                   class="form-control"
+                                   placeholder="C:\deneme" required/>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-primary">Download</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

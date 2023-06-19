@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org"
+      layout:decorate="~{layout/main}">
+<head>
+    <style>
+table td{
+vertical-align:top;
+border:solid 1px #888;
+padding:10px;
+}
+
+
+
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Error Page</h1>
+    <table>
+        <tr>
+            <td>Date</td>
+            <td th:text="${timestamp}"/>
+        </tr>
+
+        <tr>
+            <td>Exception</td>
+            <td th:text="${exception}"/>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org"
+      layout:decorate="~{layout/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+    <div class="container">
+        <div>
+            <h2>List of Registered Cats</h2>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Record Type</th>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Path</th>
+                <th>Created Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="record : ${catRecords}">
+                <td th:text="${record.recordType.displayValue}"></td>
+                <td th:text="${record.name}"></td>
+                <td th:text="${record.value}"></td>
+                <td th:text="${record.path}"></td>
+                <td th:text="${record.creationDate}"></td>
+                <td>
+                    <a th:href="@{/cat/delete/{id}(id=${record.id})}" id="btnDelete"
+                       title="Delete this tutorial" class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
