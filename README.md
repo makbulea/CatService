@@ -43,6 +43,6 @@ http://ip:8081/cat
 
 
  * Export: Export file(export.xlsx) is inside the project folder
-
+ * You can delete record. When you delete record it deleted too from file system. (List->Row->Delete Icon).
 
  
