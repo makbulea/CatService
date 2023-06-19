@@ -1,16 +1,15 @@
-#FROM openjdk:17-jdk-slim-buster
-FROM eclipse-temurin:17-jdk-focal
-WORKDIR /app
+#
+# Build stage
+#
+FROM maven:3.8.3-openjdk-17 AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package
 
-COPY .mvn/ ./mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
-COPY src ./src
-CMD ["./mvnw", "spring-boot:run"]
-
-#COPY app/build/lib/* build/lib/
-
-#COPY app/build/libs/app.jar build/
-
-#WORKDIR /app/build
-#ENTRYPOINT java -jar app.jar
+#
+# Package stage
+#
+FROM openjdk:17-alpine
+COPY --from=build /home/app/target/cyangate-0.0.1-SNAPSHOT.jar /usr/local/lib/cyangate.jar
+EXPOSE 8081
+ENTRYPOINT ["java","-jar","/usr/local/lib/cyangate.jar"]
